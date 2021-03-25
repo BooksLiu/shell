@@ -17,8 +17,8 @@
 
 # 使用方法
 # release_go.sh 发版包名 ps: 默认发 v0.x.0
-# release_go.sh 发版包名 hotfix ps: 发 v0.0.x
-# release_go.sh 发版包名 main ps: 发 vx.0.0
+# release_go.sh 发版包名 patch ps: 发 v0.0.x
+# release_go.sh 发版包名 major ps: 发 vx.0.0
 
 #set -ex
 
@@ -40,12 +40,15 @@ function incr_version() {
   mid_version=$(echo $all_version | cut -d '/' -f 2-2 | cut -d 'v' -f 2-2 | cut -d '.' -f 2-2)
   prefix_version=$(echo $all_version | cut -d '/' -f 2-2 | cut -d 'v' -f 2-2 | cut -d '.' -f 1-1)
   suffix_version=$(echo $all_version | cut -d '/' -f 2-2 | cut -d 'v' -f 2-2 | cut -d '.' -f 3-3)
-  if [ "$choice" == "main" ];then
+  if [ "$choice" == "major" ];then
     prefix_version=$((prefix_version+1))
-  elif [ "$choice" == "hotfix" ];then
+    mid_version=0
+    suffix_version=0
+  elif [ "$choice" == "patch" ];then
     suffix_version=$((suffix_version+1))
   else
     mid_version=$((mid_version+1))
+    suffix_version=0
   fi
   new_all_version="v$prefix_version.$mid_version.$suffix_version"
   echo $new_all_version
@@ -58,14 +61,11 @@ function incr_version_to_file() {
   new_version=$(incr_version $choice)
   cat <<EOT > ./version.go
 package $package_name
-
 import (
 	"fmt"
 	"log"
 )
-
 const Version = "$new_version"
-
 func init() {
 	log.Println(fmt.Sprintf("[$package_name] version=%s", Version))
 }
@@ -103,4 +103,5 @@ function auto_incr_tag() {
 
 
 auto_incr_tag $1 $2
+
 
