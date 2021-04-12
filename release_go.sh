@@ -74,12 +74,11 @@ EOT
 
 # commit__and_tag_version package ver
 function commit__and_tag_version() {
-  package=$1
-  version=$2
+  version=$1
 
-  # git add $package
-  # git commit -m "release $version"
-  # git tag $version -m "release $version"
+  git add .
+  git commit -m "release $version"
+  git tag $version -m "release $version"
 }
 
 function auto_incr_tag() {
@@ -94,7 +93,7 @@ function auto_incr_tag() {
   incr_version_to_file $package_name $choice
 
   # commit and tag to git
-  commit__and_tag_version $package_name $new_version
+  commit__and_tag_version $new_version
 
   echo "package: $package_name"
   echo "old_version: $old_version"
