@@ -16,3 +16,10 @@ shell 工具集合
 * release_go.sh 发版包名 ps: 默认发 v0.x.0
 * release_go.sh 发版包名 patch ps: 发 v0.0.x
 * release_go.sh 发版包名 major ps: 发 vx.0.0
+
+## disk_usage.sh
+查看当前目录下的文件夹磁盘使用情况
+
+使用说明:
+* disk_usage.sh 查看当前目录下文件夹的磁盘使用情况
+* disk_usage.sh sort 查看当前目录下文件夹的磁盘使用情况，并且按升序排列
