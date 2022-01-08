@@ -1,3 +1,3 @@
 #!/bin/bash
 set -ex
-find . -type f -depth 1 -name "$1" -print0 | xargs -0 -p rm
+find . -type f -maxdepth 1 -name "$1" -print0 | xargs -0 -p rm
