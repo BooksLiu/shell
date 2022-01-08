@@ -23,3 +23,15 @@ shell 工具集合
 使用说明:
 * disk_usage.sh 查看当前目录下文件夹的磁盘使用情况
 * disk_usage.sh sort 查看当前目录下文件夹的磁盘使用情况，并且按升序排列
+
+## show_pwd_suffix_file.sh
+展示当前目录下的所有后缀为 {参数1} 的文件
+
+使用说明:
+* show_pwd_suffix_file.sh ".sh" 列出当前目录下后缀为 .sh 的文件
+
+## rm_pwd_suffix_file.sh
+和 show_pwd_suffix_file.sh 配合使用，删除当前目录下的所有文件后缀为 {参数1} 的文件
+
+使用说明:
+* rm_pwd_suffix_file.sh ".sh" 删除当前目录下后缀为 .sh 的文件
